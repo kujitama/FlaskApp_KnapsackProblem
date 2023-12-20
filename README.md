@@ -14,7 +14,8 @@
     * 「リセット」を押すと入力したデータはすべて初期化される。
 
 ## 使用技術、フレームワーク／ライブラリ
-* Python, HTML
+* Python 3.11.1
+* HTML
 * Flask
 * SQLite3
 * numpy
