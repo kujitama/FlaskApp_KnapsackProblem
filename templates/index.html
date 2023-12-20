@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Myapp</title>
+</head>
+
+<body>
+  <h1>ナップサック問題</h1>
+  <h2>満足度の高い商品の組み合わせを提案します。</h2>
+
+    {% if items==[] %}
+      <p>商品を登録してください。</p>
+    {% else %}
+      <table border="1">
+        <tr>
+          <th>商品名</th>
+          <th>値段</th>
+          <th>重要度</th>
+        </tr>
+        {% for item in items %}
+          <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}円</td>
+            <td>{{item.importance}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+  <a href="{{ url_for('form') }}">商品を登録</a>
+  {% if items!=[] %}
+    <a href="{{ url_for('delete_form') }}">商品を削除</a>
+  {% endif %}
+
+  {% if budget==[] %}
+    <p>予算を設定してください。</p>
+  {% else %}
+    <p>予算：{{budget}}円</p>
+  {% endif %}
+  <a href="{{ url_for('budget_form') }}">予算を設定</a>
+
+
+  <form method="get" action="{{url_for('calculate')}}">
+    {% if items!=[] and budget!=[]%}
+      <br>
+      <input type="submit" value="計算する">
+    {% endif %}
+  </form>
+  
+  {% if best_items!=[] %}
+    <p>以下の商品をおすすめします。</p>
+    <table border="1">
+      <tr>
+        <th>商品名</th>
+        <th>値段</th>
+        <th>重要度</th>
+      </tr>
+      {% for item in best_items %}
+        <tr>
+          <td>{{item.name}}</td>
+          <td>{{item.price}}円</td>
+          <td>{{item.importance}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <p>合計金額：{{total}}円</p>
+    <p>重要度総和：{{satisfy}}</p>
+  {% endif %}
+
+  <form method="get" action="{{url_for('reset')}}">
+    {% if items!=[] or budget!=[] %}
+      <br>
+      <input type="submit" value="リセット">
+    {% endif %}
+  </form>
+
+</body>
+
+</html>

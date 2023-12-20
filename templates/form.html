@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>商品登録</title>
+</head>
+
+<body>
+  <p>以下に商品名、値段、重要度を入力してください。</p>
+  <form method="post" action="{{url_for('register')}}">
+    <table border="1">
+      <tr>
+        <th>商品名</th>
+        <th>値段</th>
+        <th>重要度</th>
+      </tr>
+      <tr>
+        <td><input type="text" name="name"></td>
+        <td><input type="number" name="price"></td>
+        <td><input type="number" name="importance"></td>
+      </tr>
+    </table>
+    <br>
+    <input type="submit" value="決定">
+  </form>
+  
+  <p>
+    <a href="{{ url_for('index') }}">トップへ</a>
+  戻ります。</p>
+</body>
+
+</html>
